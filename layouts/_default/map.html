@@ -1,0 +1,167 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{{ block "title" . }}
+		<title>
+			{{ if .IsHome }}
+				{{ $.Site.Title }} {{ with $.Site.Params.Subtitle }} — {{ . }} {{ end }}
+			{{ else }}
+				{{ .Title }} :: {{ $.Site.Title }} {{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
+			{{ end }}
+		</title>
+		{{ end }}
+		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/foundation.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/styles.css" type="text/css" media="screen">
+		{{ range .Site.Params.custom_css -}}<link rel="stylesheet" href="{{ . | absURL }}">{{- end }}
+		{{ partial "favicon.html" . }} 
+		<meta charset="utf-8" />
+
+		<!-- Reference to the Bing Maps SDK -->
+		<!-- Reference available at https://bingmapsv8samples.azurewebsites.net/#Welcome -->
+		<script type='text/javascript'
+				src='//www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AkusxS4wAsY0UO-JNOfI6M9sZ242ym-QfJfalhBiYJ8samlsgil4kCR9y6nroFqi' 
+				async defer></script>
+		
+		<script type='text/javascript'>
+		function GetMap()
+		{
+			var map = new Microsoft.Maps.Map('#myMap', {
+			credentials: 'AkusxS4wAsY0UO-JNOfI6M9sZ242ym-QfJfalhBiYJ8samlsgil4kCR9y6nroFqi',
+			center: new Microsoft.Maps.Location(27.771054, -97.401431),
+			mapTypeId: Microsoft.Maps.MapTypeId.grayscale,
+			disableScrollWheelZoom: true,
+			showZoomButtons: false,
+			showLocateMeButton: false,
+			showMapTypeSelector: false,
+			zoom: 16
+		});
+        var center = map.getCenter();
+
+        //Create custom Pushpin
+        var pin = new Microsoft.Maps.Pushpin(center, {
+            title: 'Ashmore Paint',
+            subTitle: '1736 S Staples St. (At 6 Points)',
+            text: ''
+        });
+
+        //Add the pushpin to the map
+        map.entities.push(pin);
+		}
+		</script>
+	</head>
+
+	<body>
+		<div class="off-canvas-wrapper layout-single"> {{ "<!-- Definition of global off canvas wrapper -->" | safeHTML }}
+				<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>	{{ "<!-- Definition of inner off canvas wrapper -->" | safeHTML }}
+				
+				{{ "<!-- Menu -->" | safeHTML }}
+				<div class="off-canvas position-left" id="mobile-menu" data-off-canvas>
+        			<ul>
+						{{ $currentNode := . }}
+						{{ range .Site.Menus.main }}
+          				<li><a class="nav-item{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} active{{end}}" href="{{.URL}}">{{ .Name}}</a></li>
+						{{end}}
+        			</ul>
+				</div>	
+						
+				{{ "<!-- Page Content -->" | safeHTML }}
+      			<div class="off-canvas-content" data-off-canvas-content>
+					
+					{{ "<!-- Foundation Mobile Menu -->" | safeHTML }}
+					
+					<div class="titlebar show-for-small-only">
+						<div class="title-bar left">
+							<button class="menu-icon" type="button" data-open="mobile-menu"></button>
+							<div class="title-bar-title">{{ if .Site.Params.logo.path }}<img src="{{ .Site.Params.logo.path }}" alt="{{ .Site.Params.logo.alt }}" />{{ else }}MENU{{ end }}</div>
+						</div>
+					</div>
+
+					{{ "<!-- Partials that make up the site -->" | safeHTML }}
+		  			{{ partial "nav.html" . }}
+		
+					{{ partial "hero-mini.html" . }}
+
+					{{ partial "hero-deck.html" . }}
+
+					<div id="myMap" style="position:relative;width:auto;height:300px;"></div>
+					<!-- Add your own content here -->
+					<section class="main-content">
+						<div class="wrapper row">
+							<div class="small-12 medium-12 column content-one">
+								{{ .Content }}
+							</div>
+						</div>
+						<div class="grid-container">
+							<div class="wrapper row small-up-2 medium-up-4">
+							  <div class="column">
+								<div class="card">
+	
+								  <div class="card-section">
+								  <h4>Contact</h4>
+									<p>Phone: 361-884-3895 <br /> Fax: 361-884-1051 <br /><a href="mailto:hello@ashmorepaint.com">hello@ashmorepaint.com</a></p>
+								  </div>
+								</div>
+							  </div>
+							  <div class="column">
+								<div class="card">
+	
+								  <div class="card-section">
+									<h4>Social</h4>
+									<p><a href="https://www.facebook.com/AshmorePaintCorpusChristi">Facebook</a></p>
+								  </div>
+								</div>
+							  </div>
+
+							  <div class="column">
+								<div class="card">
+	
+								  <div class="card-section">
+									<h4>Directions</h4>
+									<p>	
+										<a href="https://www.waze.com/ul?place=ChIJQf3zkqxfaIYR-LNAvSlhmp0&ll=27.77095540%2C-97.40142740&navigate=yes">Waze</a> <br />
+										<a href="https://goo.gl/maps/pK2do11L3H34tSDp9">Google Maps</a> <br />
+										<a href="https://maps.apple.com/?address=1736%20S%20Staples%20St,%20Corpus%20Christi,%20TX%20%2078404,%20United%20States&ll=27.770975,-97.401432&q=1736%20S%20Staples%20St&_ext=EiYpTLeROTjEO0AxRm6MPARaWMA5SGLd8YTGO0BBKJmn5V1ZWMBQBA%3D%3D">Apple Maps</a>
+									</p>
+								  </div>
+								</div>
+							  </div>
+
+							  <div class="column">
+								<div class="card">
+	
+								  <div class="card-section">
+									<h4>Visit Us</h4>
+									<p>1736 S Staples St. <br />Corpus Christi, TX 78404 <br />
+									</p>
+								  </div>
+								</div>
+							  </div>
+
+
+							</div>
+						  </div>
+					</section>
+
+					{{ partial "footer.html" . }}
+				</div> {{ "<!-- End page content menu wrapper -->" | safeHTML }}
+		
+			</div> {{ "<!-- End of global off canvas inner wrapper -->" | safeHTML }}
+		</div> {{ "<!-- End of global off canvas wrapper -->" | safeHTML }}
+		
+		
+		{{ "<!-- JS includes -->" | safeHTML }}
+		
+		<script src="{{ .Site.BaseURL }}js/jquery.js"></script>
+		<script src="{{ .Site.BaseURL }}js/what-input.js"></script>
+		<script src="{{ .Site.BaseURL }}js/foundation.js"></script>
+		<script src="{{ .Site.BaseURL }}js/app.js"></script>
+		
+	</body>
+</html>
+  
+  
+  
+  

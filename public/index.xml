@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ashmore Paint</title>
+    <link>/</link>
+    <description>Recent content on Ashmore Paint</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About Ashmore Paint</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Established in 1911, we are the only locally owned paint store in Corpus Christi. We carry every thing you need to complete your project including Paints, Stains, Lacquers, Brushes and more. Ashmore Paint is proud to participate in Benjamin Moore&amp;rsquo;s Signature Store Program.
+The Signature Store Program is only awarded to the very best Benjamin Moore distributors. We are also a member / owner of &amp;ldquo;ALLPRO®&amp;rdquo;. ALLPRO® Corporation is a business-to-business buying cooperative comprised of a network of independently owned paint and decorating products dealers throughout the U.</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/contact/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Products &amp; Services</title>
+      <link>/products/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/products/</guid>
+      <description>We are a full service paint store catering to homeowners, contractors and industrial facilities. Representing Benjamin Moore Paints, Lenmar Lacquers, Wooster Brushes &amp;amp; Rollers along with 200 other manufactures, we have what you need.
+Let us earn your business.
+                     </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{{ block "title" . }}
+		<title>
+			{{ if .IsHome }}
+				{{ $.Site.Title }} {{ with $.Site.Params.Subtitle }} — {{ . }} {{ end }}
+			{{ else }}
+				{{ .Title }} :: {{ $.Site.Title }} {{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
+			{{ end }}
+		</title>
+		{{ end }}
+		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/foundation.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/styles.css" type="text/css" media="screen">
+		{{ range .Site.Params.custom_css -}}<link rel="stylesheet" href="{{ . | absURL }}">{{- end }}
+		{{ partial "favicon.html" . }} 
+	</head>
+
+	<body>
+		<div class="off-canvas-wrapper"> {{ "<!-- Definition of global off canvas wrapper -->" | safeHTML }}
+				<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>	{{ "<!-- Definition of inner off canvas wrapper -->" | safeHTML }}
+				
+				{{ "<!-- Menu -->" | safeHTML }}
+				<div class="off-canvas position-left" id="mobile-menu" data-off-canvas>
+        			<ul>
+						{{ $currentNode := . }}
+						{{ range .Site.Menus.main }}
+          				<li><a class="nav-item{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} active{{end}}" href="{{.URL}}">{{ .Name}}</a></li>
+						{{end}}
+        			</ul>
+				</div>	
+						
+				{{ "<!-- Page Content -->" | safeHTML }}
+      			<div class="off-canvas-content" data-off-canvas-content>
+					
+					{{ "<!-- Foundation Mobile Menu -->" | safeHTML }}
+					
+					<div class="titlebar show-for-small-only">
+						<div class="title-bar left">
+							<button class="menu-icon" type="button" data-open="mobile-menu"></button>
+							<div class="title-bar-title">{{ if .Site.Params.logo.path }}<img src="{{ .Site.Params.logo.path }}" alt="{{ .Site.Params.logo.alt }}" />{{ else }}MENU{{ end }}</div>
+						</div>
+					</div>
+
+					{{ "<!-- Partials that make up the site -->" | safeHTML }}
+		  			{{ partial "nav.html" . }}
+		
+					{{ partial "hero.html" . }}
+		
+					{{ partial "main.html" . }}
+							
+					{{ partial "footer.html" . }}
+				</div> {{ "<!-- End page content menu wrapper -->" | safeHTML }}
+		
+			</div> {{ "<!-- End of global off canvas inner wrapper -->" | safeHTML }}
+		</div> {{ "<!-- End of global off canvas wrapper -->" | safeHTML }}
+		
+		
+		{{ "<!-- JS includes -->" | safeHTML }}
+		
+		<script src="{{ .Site.BaseURL }}js/jquery.js"></script>
+		<script src="{{ .Site.BaseURL }}js/what-input.js"></script>
+		<script src="{{ .Site.BaseURL }}js/foundation.js"></script>
+		<script src="{{ .Site.BaseURL }}js/app.js"></script>
+
+		<!-- Schema.org Store Data. Generated from https://seoscout.com/tools/schema-generator. -->
+		<script type='application/ld+json'> 
+			{
+			  "@context": "http://www.schema.org",
+			  "@type": "HardwareStore",
+			  "name": "Ashmore Paint",
+			  "url": "https://ashmorepaint.com/",
+			  "logo": "https://ashmorepaint.com/img/ashmore-paint-logo.png",
+			  "description": "Serving the Coastal Bend area since 1911. Corpus Christi's only locally owned full-service paint store. Professional help you can trust with your next project.",
+			  "address": {
+				"@type": "PostalAddress",
+				"streetAddress": "1736 S Staples St",
+				"addressLocality": "Corpus Christi",
+				"addressRegion": "TX",
+				"postalCode": "78404",
+				"addressCountry": "USA"
+			  },
+			  "openingHours": "Mo, Tu, We, Th, Fr 08:00-17:30 Sa 08:00-12:00",
+			  "contactPoint": {
+				"@type": "ContactPoint",
+				"telephone": "(361) 884 - 3895"
+			  }
+			}
+			 </script>
+	</body>
+</html>
+  
+  
+  
+  

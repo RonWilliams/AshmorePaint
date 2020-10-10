@@ -1,0 +1,31 @@
+{{ "<!-- BEGIN HERO PANEL -->" | safeHTML }}
+
+<section class="hero-panel">
+	<div class="wrapper row">
+		<div class="small-12 medium-7 column content-one">
+			<div class="orbit" role="region" aria-label="Paint Can Label" data-orbit>
+				<ul class="orbit-container">
+				  <li class="is-active orbit-slide">
+					<img class="orbit-image" src="/img/slideshow/frontpage/slides1.jpg" alt="Paint Can Label">
+				  </li>
+				  <li class="orbit-slide">
+					<img class="orbit-image" src="/img/slideshow/frontpage/slides2.jpg" alt="Paint Can Label">
+				  </li>
+				  <li class="orbit-slide">
+					<img class="orbit-image" src="/img/slideshow/frontpage/slides3.jpg" alt="Paint Can Label">
+				  </li>
+				  <li class="orbit-slide">
+					<img class="orbit-image" src="/img/slideshow/frontpage/slides4.jpg" alt="Paint Can Label">
+				  </li>
+				</ul>
+			  </div>
+		</div>
+		<div class="small-12 medium-5 column content-two">
+			<h1>{{ .Site.Params.hero.herotitle }}</h1>
+			<p>{{ .Site.Params.hero.herodiscription }}</p>
+			<a href="tel:361-884-3895" class="button">Call Us (361) 884-3895</a>
+		</div>
+	</div>
+</section> {{ "<!-- END HERO PANEL -->" | safeHTML }}
+
+

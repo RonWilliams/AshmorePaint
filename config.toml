@@ -1,0 +1,122 @@
+baseurl = "/"
+author = "Ashmore Paint"
+title = "Ashmore Paint"
+languageCode = "en-us"
+theme = "foundation-theme"
+enableRobotsTXT = true
+SectionPagesMenu = ["main", "social"]
+googleAnalytics = ""
+
+[params]
+custom_css = ["css/custom.css"]
+
+[params.logo]
+path = "/img/ashmore-paint-logo.png"
+
+[params.meta]
+description = "Corpus Christi Texas Paints, Finishes, and Stain Supplies by Benjamin Moore"
+keywords = "corpus christi, ashmore, paint, texas, finish, stain, store"
+
+[params.hero]
+herotitle = "Serving the Coastal Bend area since 1911"
+herodiscription = "Corpus Christi's only locally owned full-service paint store."
+btnblue = "Learn More"
+btngreen = "Send Us a Message"
+
+[params.main]
+contentOneTitle = "Store Hours"
+contentOneBody = "We are open Monday - Friday 7:30AM - 5:30PM Saturday 8:00AM - Noon"
+
+contentTwoTitle = "Visit Us"
+contentTwoBody = " 1736 South Staples St. Corpus Christi, TX 78404 (361) 884 - 3895"
+
+[params.footer]
+phone = "361-884-3895"
+email = "hello@ashmorepaint.com"
+address = "1736 South Staples St. Corpus Christi, TX 78404"
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 2
+
+[[menu.main]]
+name = "Products"
+url = "/products"
+weight = 3
+
+[[menu.main]]
+name = "Contact"
+url = "/contact"
+weight = 4
+
+
+[[menu.social]]
+name = "Facebook"
+url = "https://www.facebook.com/AshmorePaintCorpusChristi"
+
+
+[deployment]
+# By default, files are uploaded in an arbitrary order.
+# Files that match the regular expressions in the "Order" list
+# will be uploaded first, in the listed order.
+order = [".jpg$", ".gif$"]
+
+
+[[deployment.targets]]
+# An arbitrary name for this target.
+name = "s3"
+# The Go Cloud Development Kit URL to deploy to. Examples:
+# GCS; see https://gocloud.dev/howto/blob/#gcs
+# URL = "gs://<Bucket Name>"
+
+# S3; see https://gocloud.dev/howto/blob/#s3
+# For S3-compatible endpoints, see https://gocloud.dev/howto/blob/#s3-compatible
+URL = "s3://ashmorepaint.com/?region=us-east-1"
+
+# Azure Blob Storage; see https://gocloud.dev/howto/blob/#azure
+# URL = "azblob://$web"
+
+# You can use a "prefix=" query parameter to target a subfolder of the bucket:
+# URL = "gs://<Bucket Name>?prefix=a/subfolder/"
+
+# If you are using a CloudFront CDN, deploy will invalidate the cache as needed.
+# cloudFrontDistributionID = <ID>
+
+# Optionally, you can include or exclude specific files.
+# See https://godoc.org/github.com/gobwas/glob#Glob for the glob pattern syntax.
+# If non-empty, the pattern is matched against the local path.
+# All paths are matched against in their filepath.ToSlash form.
+# If exclude is non-empty, and a local or remote file's path matches it, that file is not synced.
+# If include is non-empty, and a local or remote file's path does not match it, that file is not synced.
+# As a result, local files that don't pass the include/exclude filters are not uploaded to remote,
+# and remote files that don't pass the include/exclude filters are not deleted.
+# include = "**.html" # would only include files with ".html" suffix
+# exclude = "**.{jpg, png}" # would exclude files with ".jpg" or ".png" suffix
+
+[[deployment.targets]]
+name = "s3-new"
+URL = "s3://new.ashmorepaint.com/?region=us-east-1"
+
+# [[deployment.matchers]] configure behavior for files that match the Pattern.
+# Samples:
+
+[[deployment.matchers]]
+#  Cache static assets for 1 year.
+pattern = "^.+\\.(js|css|svg|ttf)$"
+cacheControl = "max-age=31536000, no-transform, public"
+gzip = true
+
+[[deployment.matchers]]
+pattern = "^.+\\.(png|jpg)$"
+cacheControl = "max-age=31536000, no-transform, public"
+gzip = false
+
+[[deployment.matchers]]
+pattern = "^.+\\.(html|xml|json)$"
+gzip = true
